@@ -1,0 +1,21 @@
+{
+  "name": "project-3",
+  "version": "1.0.0",
+  "description": "Open to Intern Project Requirement",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/saurabhkumarsah/Open-To-Intern-Project-Requirement.git"
+  },
+  "author": "Saurabh Sah",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.1.4",
+    "express": "^4.18.2",
+    "mongoose": "^7.2.2"
+  }
+}
