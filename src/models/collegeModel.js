@@ -20,8 +20,7 @@ const collegeModel = Schema(
             type: Boolean,
             default: false
         }
-    },
-    { timestamp: true }
+    }
 )
 
 export default model("College", collegeModel)
