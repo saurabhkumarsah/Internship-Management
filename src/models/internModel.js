@@ -1,13 +1,12 @@
 import mongoose from "mongoose";
 const { Schema, model } = mongoose
-const ObjectId = Schema.Types.ObjectId
+const ObjectId = mongoose.Types.ObjectId
 
 const internSchema = Schema(
     {
         name: {
             type: String,
-            require: true,
-            unique: true
+            require: true
         },
         email: {
             type: String,
@@ -26,9 +25,6 @@ const internSchema = Schema(
             type: Boolean,
             default: false
         }
-    },
-    { 
-        timestamps: true
     }
 )
 

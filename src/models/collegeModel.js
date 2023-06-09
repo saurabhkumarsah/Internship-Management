@@ -20,9 +20,6 @@ const collegeModel = Schema(
             type: Boolean,
             default: false
         }
-    },
-    {
-        timestamps: true
     }
 )
 

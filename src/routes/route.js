@@ -1,5 +1,6 @@
 import express from 'express'
-import { createCollege } from '../controllers/collegeContoller.js'
+import { createCollege, getCollegeDetails } from '../controllers/collegeContoller.js'
+import { createIntern } from '../controllers/internController.js'
 export const router = express.Router()
 
 router.get('/test', (req, res) => {
@@ -7,3 +8,9 @@ router.get('/test', (req, res) => {
 })
 
 router.post('/create', createCollege)
+router.get('/collegeDetails', getCollegeDetails)
+
+router.post('/createIntern', createIntern)
+
+
+// { name, mobile, email, collegeName }
