@@ -27,7 +27,9 @@ const internSchema = Schema(
             default: false
         }
     },
-    { timestamp: true }
+    { 
+        timestamps: true
+    }
 )
 
 export default model("Intern", internSchema)

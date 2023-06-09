@@ -21,7 +21,9 @@ const collegeModel = Schema(
             default: false
         }
     },
-    { timestamp: true }
+    {
+        timestamps: true
+    }
 )
 
 export default model("College", collegeModel)
