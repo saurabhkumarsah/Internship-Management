@@ -7,10 +7,8 @@ router.get('/test', (req, res) => {
     res.send("hello")
 })
 
-router.post('/create', createCollege)
+
+router.post('/colleges', createCollege)
 router.get('/collegeDetails', getCollegeDetails)
 
-router.post('/createIntern', createIntern)
-
-
-// { name, mobile, email, collegeName }
+router.post('/interns', createIntern)

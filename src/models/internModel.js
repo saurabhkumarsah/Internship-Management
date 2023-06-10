@@ -15,11 +15,12 @@ const internSchema = Schema(
         },
         mobile: {
             type: String,
-            require: true
+            require: true,
+            unique: true
         },
         collegeId: {
             type: ObjectId,
-            ref: "collegeModel"
+            ref: "College"
         },
         isDeleted: {
             type: Boolean,

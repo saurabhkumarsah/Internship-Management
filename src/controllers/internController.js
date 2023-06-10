@@ -12,6 +12,7 @@ export const createIntern = async (req, res) => {
         if (!isValid(name)) return res.status(400).json({ status: false, message: "Please, Provide Name" })
 
         if (!isValid(email)) return res.status(400).json({ status: false, message: "Please, Provide Email" })
+        req.body.email = req.body.email.toLowerCase()
         if (!eValidator.validate(email)) return res.status(400).json({ status: false, message: "Invalid Email" })
         const DbEmail = await internModel.findOne({ email: email })
         if (DbEmail) return res.status(400).json({ status: false, message: "Email is already exist" })
@@ -35,20 +36,3 @@ export const createIntern = async (req, res) => {
         return res.status(500).json({ status: false, message: error.message })
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-// POST / functionup / interns
-// Create a document for an intern.
-// Also save the collegeId along with the document.Your request body contains the following fields - { name, mobile, email, collegeName }
-// Return HTTP status 201 on a succesful document creation.Also return the document.The response should be a JSON object like this
-// Return HTTP status 400 for an invalid request with a response body like this
