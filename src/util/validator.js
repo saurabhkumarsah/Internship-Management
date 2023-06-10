@@ -12,3 +12,8 @@ export const isValid = (str) => {
         }
     }
 }
+
+export const isValidMN = (str) => {
+    let regex = new RegExp('^[0-9]{10}$');
+    return regex.test(str)
+}

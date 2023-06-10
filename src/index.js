@@ -7,7 +7,7 @@ const { PORT, URI } = process.env
 const app = express();
 
 app.use(express.json());
-app.use("/", router);
+app.use("/functionup", router);
 app.listen(PORT, () => {
     console.log("server started on PORT: ", PORT);
 });

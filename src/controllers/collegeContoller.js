@@ -1,6 +1,7 @@
 import collegeModel from "../models/collegeModel.js"
 import axios from 'axios'
 import { isValid } from "../util/validator.js"
+import internModel from "../models/internModel.js"
 
 export const createCollege = async (req, res) => {
     try {
@@ -8,7 +9,8 @@ export const createCollege = async (req, res) => {
 
         let { name, fullName, logoLink } = req.body
 
-        if (!isValid(name)) return res.status(400).json({ status: false, message: "Please, Name" })
+        if (!isValid(name)) return res.status(400).json({ status: false, message: "Please, Provide Name" })
+        req.body.name = req.body.name.toLowerCase()
         const reqName = await collegeModel.findOne({ name: name })
         if (reqName) return res.status(400).json({ status: false, message: "Name is already exist" })
 
@@ -31,11 +33,22 @@ export const createCollege = async (req, res) => {
 
 export const getCollegeDetails = async (req, res) => {
     try {
+
         let name = req.query
         if (Object.keys(name).length === 0) return res.status(400).json({ status: false, message: "Please, Provide college name" })
-        const data = await collegeModel.findOne(name)
-        if (!data) return res.status(404).send({ status: false, message: "Not Found" })
-        return res.status(200).send({ status: true, data: data })
+        if (Object.keys(name).length > 1) return res.status(400).json({ status: false, message: "Please, Provide Only college name" })
+
+        let collegeData = await collegeModel.findOne({ name: name.name }).select({ name: 1, fullName: 1, logoLink: 1 })
+        if (!collegeData) return res.status(404).send({ status: false, message: "Not Found" })
+
+        let internData = await internModel.find({ collegeId: collegeData._id }).select({ name: 1, email: 1, mobile: 1 })
+
+        const newObj = { ...collegeData._doc }
+        delete newObj._id
+        newObj.interns = internData
+
+        return res.status(200).json({ status: true, data: newObj })
+
     } catch (error) {
         return res.status(500).send({ status: false, message: error.message })
     }
