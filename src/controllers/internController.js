@@ -23,6 +23,7 @@ export const createIntern = async (req, res) => {
         if (DbMobile) return res.status(400).json({ status: false, message: "Mobile Number is already exist" })
 
         if (!isValid(collegeName)) return res.status(400).json({ status: false, message: "Please, Provide College Name" })
+        collegeName = collegeName.toLowerCase()
 
         const dbCollegeId = await collegeModel.findOne({ name: collegeName }).select({ _id: 1 })
         if (!dbCollegeId) return res.status(404).json({ status: false, message: "College not found" })
