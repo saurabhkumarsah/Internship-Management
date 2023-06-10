@@ -29,7 +29,7 @@ npm install
 3. Create a `.env` file in the root directory and provide the necessary environment variables:
 
 ```
-PORT=<port number>
+PORT=<port-number>
 URI=<mongodb-uri>
 ```
 
