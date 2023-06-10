@@ -33,7 +33,7 @@ PORT=<port number>
 URI=<mongodb-uri>
 ```
 
-Replace `<mongodb-uri>` with the MongoDB connection URI. Also, provide your AWS access key and secret access key for accessing the S3 service.
+Replace `<mongodb-uri>` with the MongoDB connection URI.
 
 4. Start the server:
 
