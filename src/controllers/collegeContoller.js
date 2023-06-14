@@ -35,7 +35,7 @@ export const getCollegeDetails = async (req, res) => {
     try {
 
         let name = req.query
-        if (Object.keys(name).length === 0) return res.status(400).json({ status: false, message: "Please, Provide college name" })
+        if (Object.keys(name).length === 0) return res.status(404).json({ status: false, message: "Please, Provide college name" })
         if (Object.keys(name).length > 1) return res.status(400).json({ status: false, message: "Please, Provide Only college name" })
         name.collegeName = name.collegeName.toLowerCase()
         
