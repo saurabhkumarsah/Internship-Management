@@ -37,7 +37,7 @@ export const getCollegeDetails = async (req, res) => {
         let name = req.query
         if (Object.keys(name).length === 0) return res.status(400).json({ status: false, message: "Please, Provide college name" })
         if (Object.keys(name).length > 1) return res.status(400).json({ status: false, message: "Please, Provide Only college name" })
-        name.name = name.name.toLowerCase()
+        name.collegeName = name.collegeName.toLowerCase()
         
         let collegeData = await collegeModel.findOne({ name: name.collegeName }).select({ name: 1, fullName: 1, logoLink: 1 })
         if (!collegeData) return res.status(404).send({ status: false, message: "Not Found" })
