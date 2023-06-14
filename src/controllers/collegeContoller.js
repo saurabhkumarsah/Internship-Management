@@ -19,7 +19,7 @@ export const createCollege = async (req, res) => {
         await axios.get(logoLink).then(async (response) => {
             if (!isValid(logoLink)) return res.status(400).json({ status: false, message: "Please, Name" })
         }).catch((error) => {
-            return res.status(403).json({ status: false, message: "Logo Link is not valid" })
+            return res.status(400).json({ status: false, message: "Logo Link is not valid" })
         })
 
         const data = await collegeModel.create(req.body)
@@ -39,7 +39,7 @@ export const getCollegeDetails = async (req, res) => {
         if (Object.keys(name).length > 1) return res.status(400).json({ status: false, message: "Please, Provide Only college name" })
         name.name = name.name.toLowerCase()
         
-        let collegeData = await collegeModel.findOne({ name: name.name }).select({ name: 1, fullName: 1, logoLink: 1 })
+        let collegeData = await collegeModel.findOne({ name: name.collegeName }).select({ name: 1, fullName: 1, logoLink: 1 })
         if (!collegeData) return res.status(404).send({ status: false, message: "Not Found" })
 
         let internData = await internModel.find({ collegeId: collegeData._id }).select({ name: 1, email: 1, mobile: 1 })
