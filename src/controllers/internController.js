@@ -34,6 +34,6 @@ export const createIntern = async (req, res) => {
         return res.status(201).json({ status: true, data: saveData })
 
     } catch (error) {
-        return res.status(500).json({ status: false, message: error.message })
+        return res.status(500).json({ status: false, message: "error.message" })
     }
 }
