@@ -14,16 +14,17 @@ export const createCollege = async (req, res) => {
         const reqName = await collegeModel.findOne({ name: name })
         if (reqName) return res.status(400).json({ status: false, message: "Name is already exist" })
 
-        if (!isValid(fullName)) return res.status(400).json({ status: false, message: "Please, Name" })
+        if (!isValid(fullName)) return res.status(400).json({ status: false, message: "Please, Provide Name" })
 
         await axios.get(logoLink).then(async (response) => {
-            if (!isValid(logoLink)) return res.status(400).json({ status: false, message: "Please, Name" })
+            if (!isValid(logoLink)) return res.status(400).json({ status: false, message: "Please, Provide Logo Link" })
         }).catch((error) => {
             return res.status(400).json({ status: false, message: "Logo Link is not valid" })
         })
 
         const data = await collegeModel.create(req.body)
-        return res.status(201).json({ status: true, data: data })
+        const saveData = await collegeModel.findOne(req.body).select({_id: 0, __v: 0})
+        return res.status(201).json({ status: true, data: saveData })
 
     } catch (error) {
         return res.status(500).json({ status: false, message: error.message })
